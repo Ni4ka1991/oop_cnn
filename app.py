@@ -30,32 +30,23 @@ X = np.array ([
        [0, 0, 0, 0, 0, 0, 0, 0, 0]
     ])
 
-#X_tensor = X.flatten()
-
-#neuron = ConvolutionNeuron()
-#print( neuron.weights )
-#print( type( neuron.weights ))
-#print( f"weights dimension >>> {neuron.weights.ndim}")
-
-print()
-print( f"array X >>>\n{X}" )
-#print( f"array X dimension >>> {X.ndim}" )
-#print()
-#print( f"array X_tensor >>>\n{X_tensor}" )
-#print( f"array X_tensor dimension >>> {X_tensor.ndim}" )
 
 weights = np.array ([
                      [ 0, 1, 0 ],
                      [ 0, 1, 0 ],
                      [ 0, 1, 0 ]
                    ])
+#neuron = ConvolutionNeuron()
+conv1 = np.random.randn( 6, 7 )
 
-#conv1 = np.random.randn( 6, 7 )   #7 colums 6 strings
-#print( conv1 )
-#print( conv1.ndim )
+print( f"\narray X >>>\n{X}" )
+print( f"\nweights >>>\n{weights}")
 
 x_0 = X[:3]
-print( f"x_0 >>>\n{x_0}" )
 x_0_0 = x_0[ 0:3, 0:3 ]
-print( f"\nx_0_0 >>>\n{x_0_0}" )
+y_0 = x_0_0 * weights
+print( y_0 )
+
+conv1[0][0] = y_0.sum()
+print( conv1 )
 

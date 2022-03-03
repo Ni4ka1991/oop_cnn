@@ -11,13 +11,18 @@ class ConvolutionNeuron:
                                ])
 
     def forward( self, X ):
-        return X * self.weight
-
+        for k in range( 0, len(X) + 1 - 3 ):
+            for i in range( 0, len( X[0] ) + 1 - 3 ): 
+                x = X[ k:k + 3, i:( i + 3 ) ]
+                y = ( x * self.weights ).sum()
+                conv1[k][i] = y
+#        return conv1
+        print( conv1 )
+    
     def __call__( self, X ):
         return self.forward( X )
 
 
-Y = []
 
 X = np.array ([
        [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -31,30 +36,8 @@ X = np.array ([
     ])
 
 
-weights = np.array ([
-                     [ 0, 1, 0 ],
-                     [ 0, 1, 0 ],
-                     [ 0, 1, 0 ]
-                   ])
-#neuron = ConvolutionNeuron()
+neuron = ConvolutionNeuron()
+
 conv1 = np.random.randn( 6, 7 )
 
-#print( f"\narray X >>>\n{X}" )
-#print( f"X shape >>> {X.shape}" ) 
-#print( f"len axis string >>> {len( X )}" )
-#print( f"len axis column >>> {len( X[0] )}" )
-#print( f"\nweights >>>\n{weights}")
-
-
-for k in range( 0, len(X) + 1 - 3 ):
-    for i in range( 0, len( X[0] ) + 1 - 3 ): 
-        x = X[ k:k + 3, i:( i + 3 ) ]
-        print( f"\nx({i}) >>> \n{x}" )
-        y = ( x * weights ).sum()
-        conv1[k][i] = y
-    print( "*" * 13 )
-
-print( conv1 )
-
-
-
+neuron(X)

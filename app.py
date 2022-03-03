@@ -46,13 +46,13 @@ conv1 = np.random.randn( 6, 7 )
 #print( f"\nweights >>>\n{weights}")
 
 
-
-for i in range( 0, len( X[0] ) + 1 - 3 ): 
-    x = X[ 0:3, i:( i + 3 ) ]
-    print( f"\nx({i}) >>> \n{x}" )
-    y = ( x * weights ).sum()
-    conv1[0][i] = y
-
+for k in range( 0, len(X) + 1 - 3 ):
+    for i in range( 0, len( X[0] ) + 1 - 3 ): 
+        x = X[ k:k + 3, i:( i + 3 ) ]
+        print( f"\nx({i}) >>> \n{x}" )
+        y = ( x * weights ).sum()
+        conv1[k][i] = y
+    print( "*" * 13 )
 
 print( conv1 )
 

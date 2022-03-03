@@ -14,7 +14,9 @@ class ConvolutionNeuron:
         for k in range( 0, len(X) + 1 - 3 ):
             for i in range( 0, len( X[0] ) + 1 - 3 ): 
                 x = X[ k:k + 3, i:( i + 3 ) ]
-                y = ( x * self.weights ).sum()
+#                y = ( x * self.weights ).sum()
+                y = np.matmul( x, self.weights )
+                y = y.sum()
                 conv1[k][i] = y
 #        return conv1
         print( conv1 )
